@@ -22,17 +22,28 @@ public class UnionFind {
     /* Returns the size of the set v1 belongs to. */
     public int sizeOf(int vertex) {
         // TODO
-        int parentVal = 0;
+        int size = 0;
 
+        for(int x = 0; x < parents.length;x++){
+            if (connected(vertex,x)){
+                size = size + sizeOfBranch(x);
+            }
+        }
+
+
+        return size;
+
+    }
+    private int sizeOfBranch(int vertex){
+        int parentVal = 0;
         while (vertex >= 0){
             weight += 1;
             parentVal = parents[vertex];
             vertex = parentVal;
         }
-        parents[vertex] = vertex - weight;
         return weight;
-
     }
+
 
     /* Returns the parent of v1. If v1 is the root of a tree, returns the
        negative size of the tree for which v1 is the root. */
