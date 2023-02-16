@@ -74,7 +74,7 @@ public class ArrayHeapMinPQTest {
             System.out.println(x);
             randomCount = StdRandom.uniform(0,4);
             int randVal = StdRandom.uniform(0,100);
-            int randValPrior = StdRandom.uniform(0,50);
+            int randValPrior = StdRandom.uniform(0,50000);
             if(randomCount == 0&& !AHeap.contains(randVal)){
                 NHeap.add(randVal,randValPrior);
                 AHeap.add(randVal,randValPrior);
@@ -85,7 +85,7 @@ public class ArrayHeapMinPQTest {
             }else if(randomCount == 2 && AHeap.size() > 5){
                 assertEquals(NHeap.getSmallest(),AHeap.getSmallest());
             }else if(randomCount == 3 && AHeap.size() > 5){
-                System.out.println(AHeap.getSmallest()+" "+ NHeap.getSmallest());
+                System.out.println("Removed "+AHeap.getSmallest()+" "+"Removed " +NHeap.getSmallest());
                 assertEquals(NHeap.removeSmallest(),AHeap.removeSmallest());
             }
         }
