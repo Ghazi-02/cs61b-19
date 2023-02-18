@@ -30,14 +30,14 @@ public class KDTree implements PointSet {
                 } else if (p.getY() > o.getY()) {
                     return -1;
                 }
-                return 1;
+                return 1;// break arbitrarily
             } else {
                 if (p.getX() < o.getX()) {
                     return 1;
                 } else if (p.getX() > o.getX()) {
                     return -1;
                 }
-                return 1;
+                return 1;// break arbitrarily
             }
         }
     }
