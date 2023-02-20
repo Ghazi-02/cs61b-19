@@ -14,14 +14,42 @@ public class KDTree implements PointSet {
     }
     private Node nearest(Node n, Point goal, Node best){
         double goalY = goal.getY();
+        double goalX = goal.getX();
+        Node goodSide;
+        Node badSide;
         if(n == null){
             return best;
         }
         if (distance(n.point.getY(), goalY) < distance(best.point.getY(),goalY)){
             best = n;
         }
-        best = nearest(n.left,goal,best);
-        best = nearest(n.right,goal,best);
+        if(n.height % 2 == 0) {
+            if (goalY < n.point.getY()) {
+                goodSide = n.left;
+                badSide = n.right;
+            } else {
+                goodSide = n.right;
+                badSide = n.left;
+            }
+            best = nearest(goodSide, goal, best);
+            if (goodSide != null && distance(badSide.point.getY(), goalY) < distance(goodSide.point.getY(), goalY)) {
+                best = nearest(badSide, goal, best);
+            }
+        }else{
+            if (goalX < n.point.getX()) {
+                goodSide = n.left;
+                badSide = n.right;
+            } else {
+                badSide = n.right;
+                goodSide = n.left;
+            }
+            best = nearest(goodSide, goal, best);
+            if (goodSide != null && distance(badSide.point.getX(), goalX) < distance(goodSide.point.getX(), goalX)) {
+                best = nearest(badSide, goal, best);
+            }
+        }
+
+
         return best;
 
     }
