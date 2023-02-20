@@ -8,7 +8,25 @@ public class KDTree implements PointSet {
 
     @Override
     public Point nearest(double x, double y) {
-        return null;
+        Point goal = new Point(x,y);
+        Node achieved = nearest(root, goal,root);
+        return achieved.point;
+    }
+    private Node nearest(Node n, Point goal, Node best){
+        double goalY = goal.getY();
+        if(n == null){
+            return best;
+        }
+        if (distance(n.point.getY(), goalY) < distance(best.point.getY(),goalY)){
+            best = n;
+        }
+        best = nearest(n.left,goal,best);
+        best = nearest(n.right,goal,best);
+        return best;
+
+    }
+    private double distance(double y1, double y2){
+        return (y2 - y1)*(y2 - y1);
     }
 
     private class Node implements Comparable<Point> {

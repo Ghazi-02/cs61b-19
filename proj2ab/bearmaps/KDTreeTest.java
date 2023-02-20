@@ -20,13 +20,13 @@ public class KDTreeTest {
         pts.add(new Point(4, 4));
         KDTree twoDimPlane = new KDTree(pts);
         System.out.println(twoDimPlane);
-        //Point a = twoDimPlane.nearest(0, 7);
-        //assertEquals(1, (int) a.getX());
-        //assertEquals(5, (int) a.getY());
+        Point a = twoDimPlane.nearest(0, 7);
+        assertEquals(1, (int) a.getX());
+        assertEquals(5, (int) a.getY());
 
-        //Point b = twoDimPlane.nearest(6, -1);
-        //assertEquals(4, (int) b.getX());
-        //assertEquals(2, (int) b.getY());
+        Point b = twoDimPlane.nearest(6, -1);
+        assertEquals(4, (int) b.getX());
+        assertEquals(2, (int) b.getY());
 
         pts.clear();
     }
