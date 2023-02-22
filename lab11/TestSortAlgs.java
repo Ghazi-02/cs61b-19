@@ -18,7 +18,7 @@ public class TestSortAlgs {
             Assert.assertTrue(sortedQ.dequeue() <= sortedQ.dequeue());
 
         }
-        Assert.assertTrue(isSorted(q));
+        Assert.assertTrue(isSorted(sortedQ));
     }
 
     @Test
